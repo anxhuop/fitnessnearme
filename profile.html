@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitnessNearMe.in — My Profile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="auth.css"/>
+</head>
+<body class="profile-page">
+
+  <!-- ═══ HEADER ═══ -->
+  <header id="site-header">
+    <a href="index.html" class="logo">
+      Fitness<span class="logo-accent">Near</span>Me<span class="logo-domain">.in</span>
+    </a>
+    <nav class="header-right">
+      <a href="index.html" class="btn-header-ghost">🔍 Explore</a>
+      <button class="btn-header-logout" id="btn-logout">Logout</button>
+    </nav>
+  </header>
+
+  <!-- ═══ PROFILE HERO BANNER ═══ -->
+  <div class="profile-banner">
+    <div class="banner-bg-text" aria-hidden="true">PRO</div>
+    <div class="banner-content">
+
+      <!-- Avatar -->
+      <div class="avatar-wrap">
+        <div class="avatar" id="profile-avatar">R</div>
+        <button class="avatar-edit-btn" id="avatar-edit-btn" title="Change avatar">✏️</button>
+        <input type="file" id="avatar-file-input" accept="image/*" style="display:none"/>
+      </div>
+
+      <div class="banner-info">
+        <div class="banner-name-row">
+          <h1 class="banner-name" id="banner-name">Rahul Sharma</h1>
+          <span class="banner-badge" id="banner-badge">⚡ Active</span>
+        </div>
+        <p class="banner-email" id="banner-email">rahul@example.com</p>
+        <div class="banner-stats">
+          <div class="b-stat"><span class="b-stat-num" id="bstat-saved">0</span><span class="b-stat-label">Saved</span></div>
+          <div class="b-stat-sep"></div>
+          <div class="b-stat"><span class="b-stat-num" id="bstat-searches">0</span><span class="b-stat-label">Searches</span></div>
+          <div class="b-stat-sep"></div>
+          <div class="b-stat"><span class="b-stat-num" id="bstat-joined">—</span><span class="b-stat-label">Member Since</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ PROFILE BODY ═══ -->
+  <div class="profile-body">
+
+    <!-- Sidebar nav -->
+    <nav class="profile-nav" id="profile-nav">
+      <button class="pnav-item active" data-section="overview">📊 Overview</button>
+      <button class="pnav-item" data-section="edit">✏️ Edit Profile</button>
+      <button class="pnav-item" data-section="saved">❤️ Saved Places</button>
+      <button class="pnav-item" data-section="interests">🏋️ Interests</button>
+      <button class="pnav-item" data-section="security">🔒 Security</button>
+      <button class="pnav-item danger" id="nav-logout">🚪 Log Out</button>
+    </nav>
+
+    <!-- Main content area -->
+    <div class="profile-content">
+
+      <!-- ── OVERVIEW ── -->
+      <section class="psection active" id="section-overview">
+        <div class="section-header">
+          <h2 class="section-title">Overview</h2>
+          <p class="section-sub">Your fitness activity at a glance.</p>
+        </div>
+
+        <div class="overview-cards">
+          <div class="ov-card">
+            <div class="ov-icon" style="background:rgba(200,255,0,0.1);color:#c8ff00;">🏋️</div>
+            <div class="ov-body">
+              <div class="ov-num" id="ov-gyms">0</div>
+              <div class="ov-label">Gyms Saved</div>
+            </div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-icon" style="background:rgba(0,212,255,0.1);color:#00d4ff;">🧘</div>
+            <div class="ov-body">
+              <div class="ov-num" id="ov-yoga">0</div>
+              <div class="ov-label">Yoga Saved</div>
+            </div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-icon" style="background:rgba(255,77,28,0.1);color:#ff4d1c;">💃</div>
+            <div class="ov-body">
+              <div class="ov-num" id="ov-dance">0</div>
+              <div class="ov-label">Dance Saved</div>
+            </div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-icon" style="background:rgba(168,85,247,0.1);color:#a855f7;">💊</div>
+            <div class="ov-body">
+              <div class="ov-num" id="ov-protein">0</div>
+              <div class="ov-label">Shops Saved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top:2.5rem;">
+          <h3 class="section-title" style="font-size:1.1rem;">Recent Activity</h3>
+        </div>
+        <div class="activity-list" id="activity-list">
+          <div class="activity-empty">No recent activity yet. Start exploring! 🏃</div>
+        </div>
+      </section>
+
+      <!-- ── EDIT PROFILE ── -->
+      <section class="psection" id="section-edit" style="display:none;">
+        <div class="section-header">
+          <h2 class="section-title">Edit Profile</h2>
+          <p class="section-sub">Update your personal information.</p>
+        </div>
+
+        <form class="profile-form" id="form-edit-profile" novalidate>
+          <div class="field-row two-col">
+            <div class="field-group">
+              <label class="field-label" for="edit-fname">First Name</label>
+              <div class="field-wrap">
+                <span class="field-icon">👤</span>
+                <input class="field-input" type="text" id="edit-fname" placeholder="First name" required/>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="edit-lname">Last Name</label>
+              <div class="field-wrap">
+                <input class="field-input" type="text" id="edit-lname" placeholder="Last name"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="edit-email">Email</label>
+            <div class="field-wrap">
+              <span class="field-icon">✉️</span>
+              <input class="field-input" type="email" id="edit-email" placeholder="you@example.com" required/>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="edit-phone">Phone</label>
+            <div class="field-wrap">
+              <span class="field-icon">📱</span>
+              <span class="field-prefix">+91</span>
+              <input class="field-input" type="tel" id="edit-phone" placeholder="9XXXXXXXXX" maxlength="10"/>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="edit-city">City</label>
+            <div class="field-wrap">
+              <span class="field-icon">📍</span>
+              <input class="field-input" type="text" id="edit-city" placeholder="e.g. Mumbai, Delhi"/>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="edit-bio">Bio</label>
+            <textarea class="field-input field-textarea" id="edit-bio"
+              placeholder="Tell us about your fitness journey…" rows="3" maxlength="200"></textarea>
+            <span class="char-count"><span id="bio-count">0</span>/200</span>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Fitness Goal</label>
+            <div class="goal-options">
+              <label class="goal-chip"><input type="radio" name="goal" value="lose_weight"/>⚖️ Lose Weight</label>
+              <label class="goal-chip"><input type="radio" name="goal" value="build_muscle"/>💪 Build Muscle</label>
+              <label class="goal-chip"><input type="radio" name="goal" value="stay_fit"/>🏃 Stay Fit</label>
+              <label class="goal-chip"><input type="radio" name="goal" value="flexibility"/>🤸 Flexibility</label>
+              <label class="goal-chip"><input type="radio" name="goal" value="wellness"/>🧘 Wellness</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-auth" style="max-width:220px;">
+            Save Changes ✓
+          </button>
+        </form>
+      </section>
+
+      <!-- ── SAVED PLACES ── -->
+      <section class="psection" id="section-saved" style="display:none;">
+        <div class="section-header">
+          <h2 class="section-title">Saved Places</h2>
+          <p class="section-sub">Your favourite fitness spots.</p>
+        </div>
+        <div class="saved-empty" id="saved-empty">
+          <div class="state-icon">❤️</div>
+          <p class="state-title">No saved places yet</p>
+          <p class="state-desc">Explore and save gyms, yoga studios and more from the main map.</p>
+          <a href="index.html" class="btn-auth" style="display:inline-block;text-decoration:none;max-width:200px;">
+            Start Exploring →
+          </a>
+        </div>
+        <div class="saved-grid" id="saved-grid"></div>
+      </section>
+
+      <!-- ── INTERESTS ── -->
+      <section class="psection" id="section-interests" style="display:none;">
+        <div class="section-header">
+          <h2 class="section-title">Fitness Interests</h2>
+          <p class="section-sub">Choose what you want to discover.</p>
+        </div>
+        <div class="interests-big-grid" id="interests-big-grid">
+          <label class="interest-big-card" data-cat="gym">
+            <input type="checkbox" value="gym"/>
+            <div class="ibc-icon">🏋️</div>
+            <div class="ibc-name">Gym</div>
+            <div class="ibc-desc">Weights, cardio &amp; machines</div>
+            <div class="ibc-check">✓</div>
+          </label>
+          <label class="interest-big-card" data-cat="yoga">
+            <input type="checkbox" value="yoga"/>
+            <div class="ibc-icon">🧘</div>
+            <div class="ibc-name">Yoga</div>
+            <div class="ibc-desc">Mind, body &amp; breath</div>
+            <div class="ibc-check">✓</div>
+          </label>
+          <label class="interest-big-card" data-cat="dance">
+            <input type="checkbox" value="dance"/>
+            <div class="ibc-icon">💃</div>
+            <div class="ibc-name">Dance</div>
+            <div class="ibc-desc">Bollywood, contemporary &amp; more</div>
+            <div class="ibc-check">✓</div>
+          </label>
+          <label class="interest-big-card" data-cat="zumba">
+            <input type="checkbox" value="zumba"/>
+            <div class="ibc-icon">🎵</div>
+            <div class="ibc-name">Zumba</div>
+            <div class="ibc-desc">Dance fitness &amp; aerobics</div>
+            <div class="ibc-check">✓</div>
+          </label>
+          <label class="interest-big-card" data-cat="protein">
+            <input type="checkbox" value="protein"/>
+            <div class="ibc-icon">💊</div>
+            <div class="ibc-name">Nutrition</div>
+            <div class="ibc-desc">Supplements &amp; protein shops</div>
+            <div class="ibc-check">✓</div>
+          </label>
+          <label class="interest-big-card" data-cat="martial">
+            <input type="checkbox" value="martial"/>
+            <div class="ibc-icon">🥋</div>
+            <div class="ibc-name">Martial Arts</div>
+            <div class="ibc-desc">Karate, judo, boxing &amp; MMA</div>
+            <div class="ibc-check">✓</div>
+          </label>
+        </div>
+        <button class="btn-auth" style="max-width:220px;margin-top:2rem;" id="btn-save-interests">
+          Save Interests ✓
+        </button>
+      </section>
+
+      <!-- ── SECURITY ── -->
+      <section class="psection" id="section-security" style="display:none;">
+        <div class="section-header">
+          <h2 class="section-title">Security</h2>
+          <p class="section-sub">Keep your account safe.</p>
+        </div>
+
+        <form class="profile-form" id="form-change-pw" novalidate>
+          <h3 class="subsection-title">Change Password</h3>
+
+          <div class="field-group">
+            <label class="field-label" for="sec-cur-pw">Current Password</label>
+            <div class="field-wrap">
+              <span class="field-icon">🔒</span>
+              <input class="field-input" type="password" id="sec-cur-pw" placeholder="Current password"/>
+              <button type="button" class="toggle-pw" data-target="sec-cur-pw">👁</button>
+            </div>
+            <span class="field-error" id="err-cur-pw"></span>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="sec-new-pw">New Password</label>
+            <div class="field-wrap">
+              <span class="field-icon">🔑</span>
+              <input class="field-input" type="password" id="sec-new-pw" placeholder="Min 8 characters"/>
+              <button type="button" class="toggle-pw" data-target="sec-new-pw">👁</button>
+            </div>
+            <div class="pw-strength">
+              <div class="pw-bar"><div class="pw-fill" id="pw-fill-2"></div></div>
+              <span class="pw-label" id="pw-label-2">Type a new password</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="sec-conf-pw">Confirm New Password</label>
+            <div class="field-wrap">
+              <span class="field-icon">🔑</span>
+              <input class="field-input" type="password" id="sec-conf-pw" placeholder="Repeat new password"/>
+            </div>
+            <span class="field-error" id="err-conf-pw"></span>
+          </div>
+
+          <button type="submit" class="btn-auth" style="max-width:220px;">Update Password</button>
+        </form>
+
+        <div class="security-divider"></div>
+
+        <div class="danger-zone">
+          <h3 class="subsection-title danger-title">⚠️ Danger Zone</h3>
+          <p class="danger-desc">Permanently delete your account and all data. This cannot be undone.</p>
+          <button class="btn-danger" id="btn-delete-account">Delete My Account</button>
+        </div>
+      </section>
+
+    </div><!-- /.profile-content -->
+  </div><!-- /.profile-body -->
+
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- Confirm modal -->
+  <div class="modal-overlay" id="confirm-modal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title" id="modal-title">Are you sure?</h3>
+      <p class="modal-desc" id="modal-desc">This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" id="modal-cancel">Cancel</button>
+        <button class="btn-modal-confirm" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    initProfilePage();
+  </script>
+</body>
+</html>
